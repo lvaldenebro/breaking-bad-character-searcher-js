@@ -1,8 +1,41 @@
-// @import 'core/variables';
-// @import "core/reset";
-// @import 'components/code';
-// @import 'components/links';
-// @import 'layout/page';
-// @import 'layout/header';
-// @import 'layout/footer';
-// @import 'pages/index';
+@import "core/reset";
+@import 'core/variables';
+
+//review if all classes in html are used or delete them
+.header {
+    background-color: $header-color;
+    height: 15vh;
+    text-align: center;
+    &_h1 {
+        padding-top: 10px;;
+        font-size: 40px;
+    }
+    &_form {
+        padding-top: 50px;
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+    }
+}
+
+.main {
+    height: 80vh;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 50px;
+    &_section1{
+    background-color: grey; //to delete
+    width: 50vw;
+    }
+    &_section2{
+    background-color: bisque; ////to delete
+    width: 50vw;
+    }
+}
+
+.footer {
+    height: 5vh;
+    background-color: $footer-color;
+    display: flex;
+    justify-content: space-evenly;
+}
