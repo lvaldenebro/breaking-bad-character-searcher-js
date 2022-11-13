@@ -1,8 +1,7 @@
 'use strict';
 
-//do we want a listner in favourites section so we can umark them?
-
-//me toca local storage y que los datos de a usuaria no se 
+//revisar por qué se añade más de una vez un personaje y por qué no se borra al volver a seleccionar
+//local storage
 //la izqda no debe cambiar aunque se realicen varias búsquedas, son los favoritos
 
 // HTML SELECTORS
@@ -17,31 +16,42 @@ const allCharacters = document.querySelectorAll('.js-bb-character');
 //GLOBAL VARIABLES
 
 let charactersList = [];
-let characterFeatures = [];
-const characterFavorites = [];
+let characterFavorites = [];
 
 //FUNCTIONS
 
-function renderFavoriteCharacters(list) {
-    for (let character of characterFeatures) {
+function renderFavoriteCharacters() {
+    for (let character of characterFavorites) { //says which list to use
         //Creates elements in DOM (nodes)
-        const newArticle = createNode(character[0], character[1], character[2]); //its de results of the previous function
+        console.log("Pintando favoritos");
+        console.log("El objecto actual es:");
+        console.dir(character);
+        const newArticle = createNode(character); //its de results of the previous function
         section1.appendChild(newArticle);
     }
 }
 
 function favoriteCharacters(event) {
+    //this variable looks for the object
+    //parseInt() -> because the given id by json is an integer
+    const selectedCharacter = charactersList.find((eachCharacterObj) => eachCharacterObj.char_id === parseInt(event.currentTarget.id));
+    console.log("selectedCharacter is:");
+    console.dir(selectedCharacter);
+    console.log("El id que buscábamos es:");
+    console.dir(event.currentTarget);
+    //this variable looks only for the index(id)
+    const characterInFavoritesIndex = characterFavorites.findIndex((eachCharacterObj) => eachCharacterObj.char_id === parseInt(event.currentTarget.id));
+
     if (event.currentTarget.classList.contains('favorite')) {
         event.currentTarget.classList.remove('favorite');
-        const currentTargetIndex = characterFavorites.indexOf(event.currentTarget);
-        characterFavorites.splice(currentTargetIndex);
+        //.splice('initial position', 'how many elements do we delete')
+        characterFavorites.splice(characterInFavoritesIndex, 1);
     } else {
         event.currentTarget.classList.add('favorite');
-        console.log(`current targ`)
-        console.dir(event.currentTarget);
-        characterFavorites.push(event.currentTarget);
+        characterFavorites.push(selectedCharacter);
     }
-    renderFavoriteCharacters(characterFavorites);
+
+    renderFavoriteCharacters();
 }
 
 function handleArticleClick(e) {
@@ -49,10 +59,8 @@ function handleArticleClick(e) {
     favoriteCharacters(e);
 }
 
-function matchCharacter(list) {
-
+function matchCharacter() {
     for (let character of allCharacters) {
-        console.log(character);
         //.childNodes access to the article children, with [i], access to the h4 position, with .text access to the value of h4
         if (!character.childNodes[1].textContent.toLowerCase().includes(input.value.toLowerCase())) {
             character.classList.add("hidden");
@@ -62,20 +70,10 @@ function matchCharacter(list) {
 
 function handleButtonClick(e) {
     e.preventDefault();
-    matchCharacter(charactersList);
+    matchCharacter();
 }
 
-function receivedCharactersList(list) {
-    for (const character of list) {
-        let img = character.img;
-        let name = character.name;
-        let status = character.status;
-        characterFeatures.push([img, name, status]); //pushes a list of 3 elements so characterFeatures would be a list of lists one of each character. [] build the list in the moment
-        //console.log(characterFeatures);
-    }
-}
-
-function createNode(paramImg, paramName, paramStatus) {
+function createNode(characterObject) {
     const newArticle = document.createElement("article");
     const newImage = document.createElement("img");
     const newName = document.createElement("h4");
@@ -86,11 +84,14 @@ function createNode(paramImg, paramName, paramStatus) {
     newImage.classList.add("main_section2_article_img");
     newName.classList.add("main_section2_article_h4");
     newParagraph.classList.add("main_section2_article_p");
+
+    //Adds attribute to article with the id given in jason data
+    newArticle.setAttribute('id', characterObject.char_id);
     
     //Adds content to the new elements in DOM
-    newImage.src = paramImg;//because img is an empty element and does not have content, we need to add the content to source attribute
-    const contentName = document.createTextNode(paramName);
-    const contentParagraph = document.createTextNode(paramStatus);
+    newImage.src = characterObject.img;//because img is an empty element and does not have content, we need to add the content to source attribute
+    const contentName = document.createTextNode(characterObject.name);
+    const contentParagraph = document.createTextNode(characterObject.status);
 
     //Adds elements to DOM
     newName.appendChild(contentName);
@@ -105,9 +106,9 @@ function createNode(paramImg, paramName, paramStatus) {
 
 function renderHTMLCards() {
     //paints in DOM
-    for (let character of characterFeatures) {
+    for (let character of charactersList) {
         //Creates elements in DOM (nodes)
-        const newArticle = createNode(character[0], character[1], character[2]); //its de results of the previous function
+        const newArticle = createNode(character); //its de results of the previous function
         section2.appendChild(newArticle);
 
         //Add event listener to article
@@ -131,7 +132,6 @@ function returnServerInfo() {
         })
         .then(function (data) {
         charactersList = data;
-        receivedCharactersList(charactersList);
         renderHTMLCards();
     });
 }
