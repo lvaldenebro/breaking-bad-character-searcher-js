@@ -23,19 +23,50 @@
     display: flex;
     justify-content: space-evenly;
     padding-top: 50px;
-    &_section1{
+    &_section1 {
     background-color: grey; //to delete
     width: 25vw;
     }
-    &_section2{
+    &_section2 {
     background-color: bisque; ////to delete
     width: 75vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    &_title {
+        width: 100vw;
+    }
+    &_article {
+        background-color: aqua;
+        padding: 30px;
+        &_img {
+            width: 100px;
+        }
+        &_h4 {
+
+        }
+        &_p {
+
+        }
+    }
     }
 }
 
 .footer {
-    height: 5vh;
+    height: 40px;
     background-color: $footer-color;
     display: flex;
     justify-content: space-evenly;
+}
+
+//JS-managed styles 
+
+.hidden {
+    display: none;
+}
+.favorite {
+    background-color: red;
 }
