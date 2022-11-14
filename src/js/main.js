@@ -7,6 +7,7 @@ const input = document.querySelector('.js-input');
 const button = document.querySelector('.js-button');
 const section2 = document.querySelector('.js-section2');
 const section1 = document.querySelector('.js-section1');
+const selector = document.querySelector('.js-delete-selector');
 
 //GLOBAL VARIABLES
 
@@ -14,6 +15,16 @@ let charactersList = [];
 let characterFavorites = [];
 
 //FUNCTIONS
+
+function handleDeleteSelector(event) {
+    event.preventDefault();
+    const characterIndexInFavoritesList = characterFavorites.findIndex((eachCharacterObj) => eachCharacterObj.char_id === parseInt(event.currentTarget.id));
+
+    characterFavorites.splice(characterIndexInFavoritesList, 1);
+
+    localStorage.setItem('characterFavorites', JSON.stringify(characterFavorites));
+    renderFavoriteCharacters();
+}
 
 function renderFavoriteCharacters() {
     //reset left section
@@ -32,6 +43,12 @@ function renderFavoriteCharacters() {
     for (let character of characterFavorites) { //says which list to use
         //Creates elements in DOM (nodes)
         const newArticle = createNode(character); //its de results of the previous function
+        const newSelector = document.createElement('p');
+        newSelector.classList.add('main_section2_article_selector', 'js-delete-selector');
+        const contentSelector = document.createTextNode('x');
+        newSelector.appendChild(contentSelector);
+        newArticle.appendChild(newSelector);
+    
         section1.appendChild(newArticle);
     }
 }
@@ -143,7 +160,7 @@ returnServerInfo();
 renderHTMLCards(charactersList);
 
 //EVENTS
-
+// selector.addEventListener('click', handleDeleteSelector);
 button.addEventListener('click', handleButtonClick);
 
 //WHEN THE WEBPAGE LOADS
