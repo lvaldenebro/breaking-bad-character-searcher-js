@@ -8,8 +8,6 @@ const button = document.querySelector('.js-button');
 const section2 = document.querySelector('.js-section2');
 const section1 = document.querySelector('.js-section1');
 
-// const allCharacters = document.querySelectorAll('.js-bb-character');
-
 //GLOBAL VARIABLES
 
 let charactersList = [];
@@ -49,14 +47,13 @@ function favoriteCharacters(event) {
     const characterIndexInFavoritesList = characterFavorites.findIndex((eachCharacterObj) => eachCharacterObj.char_id === parseInt(event.currentTarget.id));
 
     if (characterIndexInFavoritesList === -1) { //it is not added
-            // event.currentTarget.classList.add('favorite');
             characterFavorites.push(selectedCharacter);
         } else {
-            // event.currentTarget.classList.remove('favorite');
-        //     //.splice('initial position', 'how many elements do we delete')
+            //.splice('initial position', 'how many elements do we delete')
             characterFavorites.splice(characterIndexInFavoritesList, 1);
     }
-    // localStorage.setItem('favoriteCharacters', JSON.stringify(favoriteCharacters));
+
+    localStorage.setItem('characterFavorites', JSON.stringify(characterFavorites));
     renderFavoriteCharacters();
 }
 
@@ -70,13 +67,6 @@ function matchCharacter() {
     const filteredCharacters = charactersList.filter((eachChar) => eachChar.name.toLowerCase().includes(userInput));
 
     renderHTMLCards(filteredCharacters);
-
-    // for (let character of allCharacters) {
-    //     //.childNodes access to the article children, with [i], access to the h4 position, with .text access to the value of h4
-    //     if (!character.childNodes[1].textContent.toLowerCase().includes(input.value.toLowerCase())) {
-    //         character.classList.add('hidden');
-    //     }
-    // }
 }
 
 function handleButtonClick(e) {
@@ -85,20 +75,23 @@ function handleButtonClick(e) {
 }
 
 function createNode(characterObject) {
-    // const characterIndexInFavoritesList = characterFavorites.findIndex((eachCharacterObj) => eachCharacterObj.char_id === characterObject.id);
 
-    // if (!characterIndexInFavoritesList === -1) {
-    //     characterObject.classList.add('main_section2_article_p');
-    // }
+    //For localstorage
 
-
+    const characterInFavouritesIndex = characterFavorites.findIndex((listElement) => listElement.char_id === characterObject.char_id);
+    
+    //Creates elements
     const newArticle = document.createElement('article');
     const newImage = document.createElement('img');
     const newName = document.createElement('h4');
     const newParagraph = document.createElement('p');
     
     //Adds classes to elements
-    newArticle.classList.add('js-bb-character', 'main_section2_article'); //maybe another with the name of the character
+    if (characterInFavouritesIndex !== -1) {
+        newArticle.classList.add('favorite');
+    }
+    
+    newArticle.classList.add('js-bb-character', 'main_section2_article');
     newImage.classList.add('main_section2_article_img');
     newName.classList.add('main_section2_article_h4');
     newParagraph.classList.add('main_section2_article_p');
@@ -156,10 +149,7 @@ button.addEventListener('click', handleButtonClick);
 //WHEN THE WEBPAGE LOADS
 
 function returnServerInfo() {
-    //TODO: localStorage
-    //TODO: favorite characters when the limit of the api is not controled
-    //https://breakingbadapi.com/api/characters?limit=10&offset=0
-    fetch('https://breakingbadapi.com/api/characters') //TODO: remove limit, this is set to help the code devlopment
+    fetch('https://breakingbadapi.com/api/characters')
         .then(function (response) { //promise
         return response.json(); //acts like stringify
         })
@@ -169,9 +159,10 @@ function returnServerInfo() {
     });
 }
 
-// const savedCharacters = JSON.parse(localStorage.getItem('favoriteCharacters'));
+const savedCharacters = JSON.parse(localStorage.getItem('characterFavorites'));
 
-// if (savedCharacters !== null) {
-// characterFavorites = savedCharacters;
-// renderFavoriteCharacters();
-// }
+if (savedCharacters !== null) {
+    characterFavorites = savedCharacters;
+    renderFavoriteCharacters();
+    renderHTMLCards(charactersList);
+}
