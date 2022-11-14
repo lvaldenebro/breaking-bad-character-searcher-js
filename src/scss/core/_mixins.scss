@@ -1,0 +1,8 @@
+@mixin section() {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    padding: 20px 20px 20px 20px;
+    gap: 20px;
+}

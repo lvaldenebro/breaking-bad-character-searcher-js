@@ -1,10 +1,6 @@
 /* eslint-disable indent */
 'use strict';
 
-//revisar por qué se añade más de una vez un personaje y por qué no se borra al volver a seleccionar
-//local storage
-//la izqda no debe cambiar aunque se realicen varias búsquedas, son los favoritos
-
 // HTML SELECTORS
 
 const input = document.querySelector('.js-input');
@@ -43,11 +39,11 @@ function renderFavoriteCharacters() {
 }
 
 function favoriteCharacters(event) {
-    //this variable looks for the object
-    //parseInt() -> because the given id by json is an integer
     event.currentTarget.classList.toggle('favorite');
 
     //CONDITIONALS
+    //this variable looks for the object
+    //parseInt() -> because the given id by json is an integer
     const selectedCharacter = charactersList.find((eachCharacterObj) => eachCharacterObj.char_id === parseInt(event.currentTarget.id));
     //this variable looks only for the index(id)
     const characterIndexInFavoritesList = characterFavorites.findIndex((eachCharacterObj) => eachCharacterObj.char_id === parseInt(event.currentTarget.id));
@@ -59,7 +55,8 @@ function favoriteCharacters(event) {
             // event.currentTarget.classList.remove('favorite');
         //     //.splice('initial position', 'how many elements do we delete')
             characterFavorites.splice(characterIndexInFavoritesList, 1);
-        }
+    }
+    // localStorage.setItem('favoriteCharacters', JSON.stringify(favoriteCharacters));
     renderFavoriteCharacters();
 }
 
@@ -88,6 +85,13 @@ function handleButtonClick(e) {
 }
 
 function createNode(characterObject) {
+    // const characterIndexInFavoritesList = characterFavorites.findIndex((eachCharacterObj) => eachCharacterObj.char_id === characterObject.id);
+
+    // if (!characterIndexInFavoritesList === -1) {
+    //     characterObject.classList.add('main_section2_article_p');
+    // }
+
+
     const newArticle = document.createElement('article');
     const newImage = document.createElement('img');
     const newName = document.createElement('h4');
@@ -152,7 +156,10 @@ button.addEventListener('click', handleButtonClick);
 //WHEN THE WEBPAGE LOADS
 
 function returnServerInfo() {
-    fetch('https://breakingbadapi.com/api/characters?limit=10&offset=0') //TODO: remove limit, this is set to help the code devlopment
+    //TODO: localStorage
+    //TODO: favorite characters when the limit of the api is not controled
+    //https://breakingbadapi.com/api/characters?limit=10&offset=0
+    fetch('https://breakingbadapi.com/api/characters') //TODO: remove limit, this is set to help the code devlopment
         .then(function (response) { //promise
         return response.json(); //acts like stringify
         })
@@ -161,3 +168,10 @@ function returnServerInfo() {
         renderHTMLCards(charactersList);
     });
 }
+
+// const savedCharacters = JSON.parse(localStorage.getItem('favoriteCharacters'));
+
+// if (savedCharacters !== null) {
+// characterFavorites = savedCharacters;
+// renderFavoriteCharacters();
+// }
