@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 'use strict';
 
 //revisar por qué se añade más de una vez un personaje y por qué no se borra al volver a seleccionar
@@ -21,36 +22,39 @@ let characterFavorites = [];
 //FUNCTIONS
 
 function renderFavoriteCharacters() {
+    //reset left section
+
+    while (section1.firstChild) { //while section1 has any child, remove them
+        section1.removeChild(section1.lastChild);
+    }
+     //adds left nodes
     for (let character of characterFavorites) { //says which list to use
         //Creates elements in DOM (nodes)
-        console.log("Pintando favoritos");
-        console.log("El objecto actual es:");
-        console.dir(character);
         const newArticle = createNode(character); //its de results of the previous function
+        newArticle.classList.add('selected-favorites'); //??
         section1.appendChild(newArticle);
+
     }
 }
 
 function favoriteCharacters(event) {
     //this variable looks for the object
     //parseInt() -> because the given id by json is an integer
+    event.currentTarget.classList.toggle('favorite');
+
+    //CONDITIONALS
     const selectedCharacter = charactersList.find((eachCharacterObj) => eachCharacterObj.char_id === parseInt(event.currentTarget.id));
-    console.log("selectedCharacter is:");
-    console.dir(selectedCharacter);
-    console.log("El id que buscábamos es:");
-    console.dir(event.currentTarget);
     //this variable looks only for the index(id)
-    const characterInFavoritesIndex = characterFavorites.findIndex((eachCharacterObj) => eachCharacterObj.char_id === parseInt(event.currentTarget.id));
+    const characterIndexInFavoritesList = characterFavorites.findIndex((eachCharacterObj) => eachCharacterObj.char_id === parseInt(event.currentTarget.id));
 
-    if (event.currentTarget.classList.contains('favorite')) {
-        event.currentTarget.classList.remove('favorite');
-        //.splice('initial position', 'how many elements do we delete')
-        characterFavorites.splice(characterInFavoritesIndex, 1);
-    } else {
-        event.currentTarget.classList.add('favorite');
-        characterFavorites.push(selectedCharacter);
-    }
-
+    if (characterIndexInFavoritesList === -1) { //it is not added
+            // event.currentTarget.classList.add('favorite');
+            characterFavorites.push(selectedCharacter);
+        } else {
+            // event.currentTarget.classList.remove('favorite');
+        //     //.splice('initial position', 'how many elements do we delete')
+            characterFavorites.splice(characterIndexInFavoritesList, 1);
+        }
     renderFavoriteCharacters();
 }
 
@@ -63,7 +67,7 @@ function matchCharacter() {
     for (let character of allCharacters) {
         //.childNodes access to the article children, with [i], access to the h4 position, with .text access to the value of h4
         if (!character.childNodes[1].textContent.toLowerCase().includes(input.value.toLowerCase())) {
-            character.classList.add("hidden");
+            character.classList.add('hidden');
         }
     }
 }
@@ -74,16 +78,16 @@ function handleButtonClick(e) {
 }
 
 function createNode(characterObject) {
-    const newArticle = document.createElement("article");
-    const newImage = document.createElement("img");
-    const newName = document.createElement("h4");
-    const newParagraph = document.createElement("p");
+    const newArticle = document.createElement('article');
+    const newImage = document.createElement('img');
+    const newName = document.createElement('h4');
+    const newParagraph = document.createElement('p');
     
     //Adds classes to elements
-    newArticle.classList.add("js-bb-character", "main_section2_article"); //maybe another with the name of the character
-    newImage.classList.add("main_section2_article_img");
-    newName.classList.add("main_section2_article_h4");
-    newParagraph.classList.add("main_section2_article_p");
+    newArticle.classList.add('js-bb-character', 'main_section2_article'); //maybe another with the name of the character
+    newImage.classList.add('main_section2_article_img');
+    newName.classList.add('main_section2_article_h4');
+    newParagraph.classList.add('main_section2_article_p');
 
     //Adds attribute to article with the id given in jason data
     newArticle.setAttribute('id', characterObject.char_id);
@@ -111,7 +115,7 @@ function renderHTMLCards() {
         const newArticle = createNode(character); //its de results of the previous function
         section2.appendChild(newArticle);
 
-        //Add event listener to article
+        //Add event listener to each article
         newArticle.addEventListener('click', handleArticleClick);
     }
 }

@@ -26,6 +26,16 @@
     &_section1 {
     background-color: grey; //to delete
     width: 25vw;
+    display: flex; //mixins if time
+    flex-wrap: wrap;
+    gap: 30px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    &_title {
+        width: 100vw;
+        font-size: 25px;;
+    }
     }
     &_section2 {
     background-color: bisque; ////to delete
@@ -38,18 +48,22 @@
     padding-right: 20px;
     &_title {
         width: 100vw;
+        font-size: 25px;;
     }
     &_article {
-        background-color: aqua;
+        background-color: $main-cards-color;
         padding: 30px;
+        border-radius: 20px;
         &_img {
             width: 100px;
+            margin-bottom: 10px;;
         }
         &_h4 {
-
+            font-weight: bold;
+            margin-bottom: 10px;
         }
         &_p {
-
+            font-style: italic;
         }
     }
     }
@@ -68,5 +82,5 @@
     display: none;
 }
 .favorite {
-    background-color: red;
+    background-color: burlywood;
 }
