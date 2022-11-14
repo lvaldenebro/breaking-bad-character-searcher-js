@@ -7,23 +7,48 @@ const input = document.querySelector('.js-input');
 const button = document.querySelector('.js-button');
 const section2 = document.querySelector('.js-section2');
 const section1 = document.querySelector('.js-section1');
-const selector = document.querySelector('.js-delete-selector');
-
 //GLOBAL VARIABLES
 
 let charactersList = [];
 let characterFavorites = [];
 
 //FUNCTIONS
+// function resetFavoriteSection(characterFavorites) {
+//     while (section1.firstChild) { 
+//         section1.removeChild(section1.lastChild);
+//     }
+//     const newTitle = document.createElement('h3');
+//     newTitle.classList.add('main_section1_title', 'main_title');
+//     const newText = document.createTextNode('Favorites❤️');
+//     newTitle.appendChild(newText);
+//     section1.appendChild(newTitle);
 
-function handleDeleteSelector(event) {
-    event.preventDefault();
+//     const inputReset = document.createElement("INPUT");
+//     inputReset.setAttribute("type", "submit");
+
+//     localStorage.setItem('characterFavorites', JSON.stringify(characterFavorites));
+//     renderFavoriteCharacters();
+//     renderHTMLCards(charactersList);
+// }
+
+// function handleButtonReset(e) {
+//     e.preventDefault();
+//     resetFavoriteSection();
+// }
+
+function deleteFavoriteCard(event) {
     const characterIndexInFavoritesList = characterFavorites.findIndex((eachCharacterObj) => eachCharacterObj.char_id === parseInt(event.currentTarget.id));
-
+    
     characterFavorites.splice(characterIndexInFavoritesList, 1);
-
+    
     localStorage.setItem('characterFavorites', JSON.stringify(characterFavorites));
     renderFavoriteCharacters();
+    renderHTMLCards(charactersList); //reprints the list so it looses the favorite class
+}
+
+function handleDeleteSelector(e) {
+    e.preventDefault();
+    deleteFavoriteCard(e);
 }
 
 function renderFavoriteCharacters() {
@@ -35,9 +60,13 @@ function renderFavoriteCharacters() {
     //recreates the section1 title
     const newTitle = document.createElement('h3');
     newTitle.classList.add('main_section1_title', 'main_title');
-    const newContent = document.createTextNode('Favorites❤️');
-    newTitle.appendChild(newContent);
+    const newText = document.createTextNode('Favorites❤️');
+    newTitle.appendChild(newText);
     section1.appendChild(newTitle);
+
+    // const inputReset = document.createElement("INPUT");
+    // inputReset.setAttribute("type", "submit");
+    // section1.appendChild(inputReset);
 
      //adds left nodes
     for (let character of characterFavorites) { //says which list to use
@@ -50,7 +79,11 @@ function renderFavoriteCharacters() {
         newArticle.appendChild(newSelector);
     
         section1.appendChild(newArticle);
+
+        // we don't  need query selector because the item is already selected
+        newSelector.addEventListener('click', handleDeleteSelector);
     }
+    // inputReset.addEventListener('click', handleButtonReset);
 }
 
 function favoriteCharacters(event) {
@@ -160,7 +193,6 @@ returnServerInfo();
 renderHTMLCards(charactersList);
 
 //EVENTS
-// selector.addEventListener('click', handleDeleteSelector);
 button.addEventListener('click', handleButtonClick);
 
 //WHEN THE WEBPAGE LOADS
