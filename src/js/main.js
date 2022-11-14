@@ -12,7 +12,7 @@ const button = document.querySelector('.js-button');
 const section2 = document.querySelector('.js-section2');
 const section1 = document.querySelector('.js-section1');
 
-const allCharacters = document.querySelectorAll('.js-bb-character');
+// const allCharacters = document.querySelectorAll('.js-bb-character');
 
 //GLOBAL VARIABLES
 
@@ -27,13 +27,18 @@ function renderFavoriteCharacters() {
     while (section1.firstChild) { //while section1 has any child, remove them
         section1.removeChild(section1.lastChild);
     }
+    //recreates the section1 title
+    const newTitle = document.createElement('h3');
+    newTitle.classList.add('main_section1_title', 'main_title');
+    const newContent = document.createTextNode('Favorites❤️');
+    newTitle.appendChild(newContent);
+    section1.appendChild(newTitle);
+
      //adds left nodes
     for (let character of characterFavorites) { //says which list to use
         //Creates elements in DOM (nodes)
         const newArticle = createNode(character); //its de results of the previous function
-        newArticle.classList.add('selected-favorites'); //??
         section1.appendChild(newArticle);
-
     }
 }
 
@@ -64,12 +69,17 @@ function handleArticleClick(e) {
 }
 
 function matchCharacter() {
-    for (let character of allCharacters) {
-        //.childNodes access to the article children, with [i], access to the h4 position, with .text access to the value of h4
-        if (!character.childNodes[1].textContent.toLowerCase().includes(input.value.toLowerCase())) {
-            character.classList.add('hidden');
-        }
-    }
+    const userInput = input.value.toLowerCase();
+    const filteredCharacters = charactersList.filter((eachChar) => eachChar.name.toLowerCase().includes(userInput));
+
+    renderHTMLCards(filteredCharacters);
+
+    // for (let character of allCharacters) {
+    //     //.childNodes access to the article children, with [i], access to the h4 position, with .text access to the value of h4
+    //     if (!character.childNodes[1].textContent.toLowerCase().includes(input.value.toLowerCase())) {
+    //         character.classList.add('hidden');
+    //     }
+    // }
 }
 
 function handleButtonClick(e) {
@@ -108,9 +118,20 @@ function createNode(characterObject) {
     return newArticle;
 }
 
-function renderHTMLCards() {
+function renderHTMLCards(list) {
+    //RESET
+    while (section2.firstChild) {
+        section2.removeChild(section2.lastChild);
+    }
+    //recreates the section1 title
+    const newTitle = document.createElement('h3');
+    newTitle.classList.add('main_section2_title', 'main_title');
+    const newContent = document.createTextNode('Characters❤️');
+    newTitle.appendChild(newContent);
+    section2.appendChild(newTitle);
+    
     //paints in DOM
-    for (let character of charactersList) {
+    for (let character of list) {
         //Creates elements in DOM (nodes)
         const newArticle = createNode(character); //its de results of the previous function
         section2.appendChild(newArticle);
@@ -122,6 +143,7 @@ function renderHTMLCards() {
 
 //CALL FUNCTIONS
 returnServerInfo();
+renderHTMLCards(charactersList);
 
 //EVENTS
 
@@ -136,6 +158,6 @@ function returnServerInfo() {
         })
         .then(function (data) {
         charactersList = data;
-        renderHTMLCards();
+        renderHTMLCards(charactersList);
     });
 }
