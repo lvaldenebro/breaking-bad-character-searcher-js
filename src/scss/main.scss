@@ -23,6 +23,7 @@
 .main {
     display: flex;
     justify-content: space-evenly;
+    min-height: 75vh;
     &_section1 {
         background-color: whitesmoke;
         width: 40vw;
