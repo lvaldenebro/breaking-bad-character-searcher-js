@@ -1,15 +1,3 @@
-<!-- header: input usuario con placeholder
-botón de search 
-
-main:
-section 1 favoritos (vacía)
-section 2: personajes
-
-en ambas, cada personaje es:
-tarjeta con foto, + nombre y apellido + vivo o muerto
-
-footer:
-texto + copyright -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,26 +10,13 @@ texto + copyright -->
 </head>
 
 <body>
-    <header class="header">
-        <h1 class="header_h1">Breaking Bad, ¿dead or alive?</h1>
-        <form class="header_form">
-            <input class="header_form_input--text js-input" placeholder="Example: Walter White" type="text" />
-            <input class="header_form_input--submit js-button" type="submit" value="Search" />
-        </form>
-    </header>
-    <main class="main">
-        <section class="main_section1 js-section1">
-            <h3 class="main_section1_title main_title">Favorites❤️</h3>
-        </section>
-        <section class="main_section2 js-section2">
-            <h3 class="main_section2_title main_title">Characters❤️</h3>
-        </section>
-    </main>
-    <footer class="footer">
-        <p class="footer_p">Breaking Bad is regarding as one of the greatest television series of all time, and with 16
-            Primetime Emmy Awards</p>
-        <p class="footer_copy">&copy;Adalab 2022</p>
-    </footer>
+    <!--header-->
+    <include src="./partials/header.html"></include>
+    <!--main-->
+    <include src="./partials/main.html"></include>
+    <!--footer-->
+    <include src="./partials/footer.html"></include>
+
     <script type="text/javascript" src="./assets/js/main.js"></script>
 </body>
 

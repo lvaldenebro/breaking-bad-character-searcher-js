@@ -1,0 +1,17 @@
+.header {
+    background-color: $bb-green;
+    color: $basic-white;
+    height: 20vh;
+    text-align: center;
+    width: 100%;
+    &_h1 {
+        padding-top: 20px;
+        font-size: 40px;
+    }
+    &_form {
+        padding-top: 40px;
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+    }
+}
