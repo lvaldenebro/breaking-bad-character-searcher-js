@@ -1,6 +1,20 @@
 /* eslint-disable indent */
 'use strict';
 
+function createBasicHTMLSection1() {
+    const newTitle = document.createElement('h3');
+    newTitle.classList.add('main_section1_title', 'main_title');
+    const newText = document.createTextNode('Favorites❤️');
+    newTitle.appendChild(newText);
+    section1.appendChild(newTitle);
+
+    const inputReset = document.createElement("INPUT");
+    inputReset.setAttribute("type", "reset");
+    inputReset.classList.add('main_section1_reset', 'js-reset');
+    inputReset.value = 'Reset';
+    section1.appendChild(inputReset);
+}
+
 function createNode(characterObject) {
 
     //For localstorage

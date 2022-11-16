@@ -8,18 +8,8 @@ function resetFavoriteSection() {
     }
 
     characterFavorites = [];
-    const newTitle = document.createElement('h3');
-    newTitle.classList.add('main_section1_title', 'main_title');
-    const newText = document.createTextNode('Favorites❤️');
-    newTitle.appendChild(newText);
-    section1.appendChild(newTitle);
 
-    const inputReset = document.createElement("INPUT");
-    inputReset.setAttribute("type", "reset");
-    inputReset.classList.add('main_section1_reset');
-    inputReset.value = 'Reset';
-    section1.appendChild(inputReset);
-
+    createBasicHTMLSection1();
 
     localStorage.setItem('characterFavorites', JSON.stringify(characterFavorites));
     renderFavoriteCharacters();
@@ -54,17 +44,7 @@ function renderFavoriteCharacters() {
         section1.removeChild(section1.lastChild);
     }
     //recreates the section1 title
-    const newTitle = document.createElement('h3');
-    newTitle.classList.add('main_section1_title', 'main_title');
-    const newText = document.createTextNode('Favorites❤️');
-    newTitle.appendChild(newText);
-    section1.appendChild(newTitle);
-
-    const inputReset = document.createElement("INPUT");
-    inputReset.setAttribute("type", "reset");
-    inputReset.classList.add('main_section1_reset');
-    inputReset.value = 'Reset';
-    section1.appendChild(inputReset);
+    createBasicHTMLSection1();
 
      //adds left nodes
     for (let character of characterFavorites) { //says which list to use
@@ -81,6 +61,7 @@ function renderFavoriteCharacters() {
         // we don't  need query selector because the item is already selected
         newSelector.addEventListener('click', handleDeleteSelector);
     }
+    const inputReset = document.querySelector('.js-reset');
     inputReset.addEventListener('click', handleButtonReset);
 }
 
