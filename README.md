@@ -6,7 +6,7 @@ Welcome Breaking Bad lover! If you think this is best series of all times, as we
 
 ## Technologies
 
-This web page was made using HTML5, SaSS, plain JS, advanced DOM, localStorage and a petition to an API(https://breakingbadapi.com/api/) and the Adalab Web Starter Kit, who uses NodeJS, Gulp and JSON.
+This web page was made using HTML5, SaSS, plain JS, advanced DOM, localStorage and a request to an API(https://breakingbadapi.com/api/) and the Adalab Web Starter Kit, who uses NodeJS, Gulp and JSON.
 
 Please, take into account that all HTML, SaSS and JS files are divided in partials:
 
@@ -33,8 +33,8 @@ As this page works with localStorage, don't you worry if your page is reloaded a
 If you want to download this project, you'll need to:
 
 1. Clone all files in this repository
-2. Open it and run 'npm install' in your terminal. One this is done, you will have created a new_modules folder that will allow you to use the page.
-3. Run 'npm-start' in your terminal This will open the page in your predetermined browser.
+2. Open it and run `npm install` in your terminal. One this is done, you will have created a new_modules folder that will allow you to use the page.
+3. Run `npm-start` in your terminal This will open the page in your predetermined browser.
 4. You can now play!
 
 ## Credits

@@ -1,6 +1,37 @@
 /* eslint-disable indent */
 'use strict';
 
+//FUNCTIONS
+function resetFavoriteSection() {
+    while (section1.firstChild) {
+        section1.removeChild(section1.lastChild);
+    }
+
+    characterFavorites = [];
+    const newTitle = document.createElement('h3');
+    newTitle.classList.add('main_section1_title', 'main_title');
+    const newText = document.createTextNode('Favorites❤️');
+    newTitle.appendChild(newText);
+    section1.appendChild(newTitle);
+
+    const inputReset = document.createElement("INPUT");
+    inputReset.setAttribute("type", "reset");
+    inputReset.value = 'Reset';
+    section1.appendChild(inputReset);
+
+
+    localStorage.setItem('characterFavorites', JSON.stringify(characterFavorites));
+    renderFavoriteCharacters();
+    renderHTMLCards(charactersList);
+}
+
+function handleButtonReset(e) {
+    console.log('holii');
+    e.preventDefault();
+    resetFavoriteSection();
+}
+
+
 function deleteFavoriteCard(event) {
     const characterIndexInFavoritesList = characterFavorites.findIndex((eachCharacterObj) => eachCharacterObj.char_id === parseInt(event.currentTarget.id));
     
@@ -29,6 +60,11 @@ function renderFavoriteCharacters() {
     newTitle.appendChild(newText);
     section1.appendChild(newTitle);
 
+    const inputReset = document.createElement("INPUT");
+    inputReset.setAttribute("type", "reset");
+    inputReset.value = 'Reset';
+    section1.appendChild(inputReset);
+
      //adds left nodes
     for (let character of characterFavorites) { //says which list to use
         //Creates elements in DOM (nodes)
@@ -44,6 +80,7 @@ function renderFavoriteCharacters() {
         // we don't  need query selector because the item is already selected
         newSelector.addEventListener('click', handleDeleteSelector);
     }
+    inputReset.addEventListener('click', handleButtonReset);
 }
 
 function favoriteCharacters(event) {
