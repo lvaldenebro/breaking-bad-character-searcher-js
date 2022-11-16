@@ -23,8 +23,7 @@ This assignment has only one page:
 
 - Main: It is divided in two sections:
   - Characters: This section shows the result of the filter if applied. Here you can select the characters that are your favorites, this will make the background color change and they will be added into Favorites section. By clicking again in one of them, you will delete them from your favorites.
-  - Favorites: this sections receives your favorites characters, with the favorites special background color, and adds them a cross in which you can delete them.
-    TO BE DONE: a reset button to delete all your favorites.
+  - Favorites: this sections receives your favorites characters, with the favorites special background color, and adds them a cross in which you can delete them. There is a reset button too, to delete all your favorites.
 
 As this page works with localStorage, don't you worry if your page is reloaded against your will, because all the information you added, will be there when you come back :)
 

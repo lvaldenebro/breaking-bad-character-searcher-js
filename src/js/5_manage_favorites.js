@@ -16,6 +16,7 @@ function resetFavoriteSection() {
 
     const inputReset = document.createElement("INPUT");
     inputReset.setAttribute("type", "reset");
+    inputReset.classList.add('main_section1_reset');
     inputReset.value = 'Reset';
     section1.appendChild(inputReset);
 
@@ -26,7 +27,6 @@ function resetFavoriteSection() {
 }
 
 function handleButtonReset(e) {
-    console.log('holii');
     e.preventDefault();
     resetFavoriteSection();
 }
@@ -62,6 +62,7 @@ function renderFavoriteCharacters() {
 
     const inputReset = document.createElement("INPUT");
     inputReset.setAttribute("type", "reset");
+    inputReset.classList.add('main_section1_reset');
     inputReset.value = 'Reset';
     section1.appendChild(inputReset);
 
