@@ -2,36 +2,31 @@
 
 ## Description
 
-Welcome Breaking Bad lover! If you think this is best serie of all times, as well if you only try to spoiler someone, the following page will help you to find the status of the characters.
+Welcome Breaking Bad lover! If you think this is best series of all times, as well as if you only try to spoiler someone, the following page will help you to find the characters and check if they are dead or alive! ;)
 
 ## Technologies
 
-This web page was made using HTML5, SaSS, plain JS, localStorage and the Adalab Web Starter Kit, who uses NodeJS, Gulp and JSON.
+This web page was made using HTML5, SaSS, plain JS, advanced DOM, localStorage and a petition to an API(https://breakingbadapi.com/api/) and the Adalab Web Starter Kit, who uses NodeJS, Gulp and JSON.
 
-Please, take into account that all HTML, SaSS and JS files are divided in partials. In the case of JS files, they are ordered by number following the moment the code is used. In the case of HTML and CSS, the are related, each HTML file has one SaSS file associated named after it. All of them have descriptive names according to the place of the page they are developing or working on.
+Please, take into account that all HTML, SaSS and JS files are divided in partials:
+
+- In the case of JS files, they are ordered by number following the moment the code is used. The name is descriptive referring at the content they manage.
+- In the case of HTML and CSS, they are related, each HTML file has one SaSS file associated named after it. All of them have descriptive names according to the place of the page they are developing or working on.
 
 ## Table of contents and How to Use the Project
 
 ### Main landing
 
-It is the welcoming page, you should click on 'Comenzar'('Start') to go the create cards page. All the other elements are static.
+This assignment has only one page:
 
-### Create card landing
+- Header: Shows the title and a input place in which you can search for a character's name. This input has a filter so you can both check for a exact name or a peace that think will match some character. E.g.; 'ky' will return 'Skyler White'.
 
-On the left, you can see a toggled form that covers all the options you have to modified and personalized your card. This form can only open one section at a time, and to close one, you need to open another.
+- Main: It is divided in two sections:
+  - Characters: This section shows the result of the filter if applied. Here you can select the characters that are your favorites, this will make the background color change and they will be added into Favorites section. By clicking again in one of them, you will delete them from your favorites.
+  - Favorites: this sections receives your favorites characters, with the favorites special background color, and adds them a cross in which you can delete them.
+    TO BE DONE: a reset button to delete all your favorites.
 
-The sections are:
-
-- 'Diseña'('Design'): you can choose between 3 different palettes.
-- 'Rellena'('Fill'): you need to fill all the boxes so the information in your cards is updated. All fields are compulsory except the telephone number ('Teléfono'). We are not sure that all minions have one! If any of the information happens to be in an unwanted format, the box is going to become red.
-  NOTE: you can add either an image or a GIF that represents you for your card.
-  NOTE: in LinkedIn and GitHub boxes, you only need to add your profile, not the complete url.
-- 'Comparte': allows you to create your card in two different ways: by giving you an url to share everywhere you like, or by creating for you a new twit in you Twitter account ready to be sent. If there is anything wrong with your information that you didn't detected before, this won't create your card, but to reopened the 'Rellena' section so you can fix it.
-
-On the right, there is the preview, that means that you can see how is your card looking at any moment of the developing process.
-Together with this, you can always click the reset button if you are unhappy an restart everything.
-
-As this page works with localStorage, don't you be worry if your cards is reloaded against your will, because all the information you added, will be there when you come back :)
+As this page works with localStorage, don't you worry if your page is reloaded against your will, because all the information you added, will be there when you come back :)
 
 ## How to install the project
 
@@ -40,11 +35,13 @@ If you want to download this project, you'll need to:
 1. Clone all files in this repository
 2. Open it and run 'npm install' in your terminal. One this is done, you will have created a new_modules folder that will allow you to use the page.
 3. Run 'npm-start' in your terminal This will open the page in your predetermined browser.
-4. You can now play, my minion!
+4. You can now play!
 
 ## Credits
 
-This web page is created by Marta, Ana, Celia and Laura under the Adalab supervision, taking into account a given design that, in the end, was modified to personalized the experience.
+This web page is created under the Adalab supervision, taking into account a given design that, in the end, was modified to personalized the experience.
+
+Thanks to https://breakingbadapi.com/api/ for the useful data!
 
 ## Thanks to
 
