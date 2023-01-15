@@ -4,13 +4,15 @@
 //WHEN THE WEBPAGE LOADS
 
 function returnServerInfo() {
-    fetch('https://breakingbadapi.com/api/characters')
+    //commented since the API is no longer available
+    // fetch('https://breakingbadapi.com/api/characters')
+    fetch('./assets/data/data.json')
         .then(function (response) { //promise
-        return response.json(); //acts like stringify
+            return response.json(); //acts like stringify
         })
         .then(function (data) {
-        charactersList = data;
-        renderHTMLCards(charactersList);
+            charactersList = data.slice(0, 20);
+            renderHTMLCards(charactersList);
     });
 }
 
