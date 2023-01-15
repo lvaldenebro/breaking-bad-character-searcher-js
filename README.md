@@ -1,4 +1,4 @@
-### Project's title: Breaking Bad, dead or alive?
+# Project's title: Breaking Bad, dead or alive?
 
 ## Description
 
