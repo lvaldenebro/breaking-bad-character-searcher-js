@@ -12,7 +12,7 @@ Please, take into account that all HTML, SaSS and React file are divided into co
 
 NOTE: as the API used for this web pages is no longer free, the code is commented but it is alive thanks to a json with the characters data.
 
-## Table of contents and How to Use the Project
+## How to Use the Project
 
 At the beginning of the page, you have the title and the searcher in which you can insert the name of the character to see its status. This page is working with only the 20 first characters of the JSON.
 
