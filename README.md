@@ -6,7 +6,7 @@ Welcome to the Breaking Bad character searcher, in which you can review the stat
 
 ## Technologies
 
-This web page was made using HTML5, SaSS, React, JS, localStorage, API REST, propTypes, React Router DOM and the React Starter Kit, that uses NodeJS, Gulp and JSON.
+This web page was made using HTML5, SaSS, React, JS, localStorage, API REST, propTypes and React Router DOM.
 
 Please, take into account that all HTML, SaSS and React file are divided into components. Both SaSS and React files are named the same so it is easy to maintain and more ordered. All of them have descriptive names according to the place of the page they are developing or working on.
 
